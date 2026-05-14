@@ -53,6 +53,7 @@ const NAV_SECTIONS = [
     routes: [
       { path: '/', label: 'Overview' },
       { path: '/pipelines', label: 'Pipelines' },
+      { path: '/tank-operator/mcp-github', label: 'Tank GitHub MCP' },
     ],
   },
   {

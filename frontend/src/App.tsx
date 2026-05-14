@@ -19,6 +19,7 @@ import FztFinalView from './components/FztFinalView'
 import FztKeyboardView from './components/FztKeyboardView'
 import CertConceptsView from './components/CertConceptsView'
 import SpireLensWorkflowView from './components/SpireLensWorkflowView'
+import TankGithubMcpView from './components/TankGithubMcpView'
 import type { AppName } from './types'
 import { APP_NAMES } from './types'
 
@@ -60,6 +61,7 @@ export default function App() {
         <Route path="/fzt/keyboard" element={<FztKeyboardView />} />
         <Route path="/certs" element={<CertConceptsView />} />
         <Route path="/spirelens" element={<SpireLensWorkflowView />} />
+        <Route path="/tank-operator/mcp-github" element={<TankGithubMcpView />} />
         <Route path="/emotions" element={<EmotionsView />} />
         <Route path="/:app" element={<DiagramPage />} />
       </Routes>
