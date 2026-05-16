@@ -24,7 +24,7 @@ spec:
       serviceAccountName: infra-shared
       containers:
         - name: diagrams
-          image: romainecr.azurecr.io/diagrams:placeholder
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
