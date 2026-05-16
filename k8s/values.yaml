@@ -2,4 +2,4 @@
 # push to main (via `sed` on this file).
 image:
   repository: romainecr.azurecr.io/diagrams
-  tag: 195acb1
+  tag: 2a39a87
