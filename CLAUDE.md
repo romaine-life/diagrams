@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Overview
 
-diagrams is an interactive architecture documentation site (at `diagrams.romaine.life`) for Nelson's Azure app ecosystem at romaine.life. It uses React Flow to visualize how all apps connect to shared infrastructure (Cosmos DB, shared API, DNS, Key Vault, etc.) with per-app filtering and clickable annotations.
+diagrams is an interactive architecture documentation site (at `diagrams.romaine.life`) for Nelson's Azure app ecosystem at romaine.life. It uses React Flow to visualize how apps connect to platform infrastructure, app-owned Key Vaults, CI/CD, and external services with per-app filtering and clickable annotations.
 
 **Read `D:/shell-config/setup/claude/CLAUDE.md` for global Claude config, profile dispatch, skills, and memory rules.**
 
@@ -44,9 +44,10 @@ frontend/src/
   data/           Architecture data (nodes.ts, edges.ts, annotations.ts)
   types.ts        Shared TypeScript types
   index.css       Tailwind v4 + React Flow dark theme overrides
-tofu/             OpenTofu IaC — SWA (Free), DNS CNAME (diagrams.romaine.life), custom domain
+k8s/              Helm chart for the AKS deployment
+tofu/             OpenTofu IaC — app Key Vault, CI identity, and supporting Azure resources
 .github/workflows/
-  full-stack-deploy.yml   Build + deploy frontend to SWA on push to frontend/
+  build-and-deploy.yaml   Build + push the container image, then bump k8s/values.yaml
   tofu.yml                Plan on PR, apply on merge to tofu/
   lint.yml                ESLint on PR
 ```
@@ -101,7 +102,7 @@ When a new app joins the dashboard, update `REPOS` in `backend/routes/ci.js` (fo
 
 ## Navigation
 
-`NavSidebar` component — persistent collapsible right-side panel with route list grouped by section. Present on all pages. Footer fetches `/version.json` (written at deploy time by `full-stack-deploy.yml`) and renders the 7-char SHA linked to the GitHub commit plus a relative timestamp ticking every 60s. The footer hides if `/version.json` 404s (dev mode); `frontend/public/version.json` is gitignored so dev fixtures don't get committed.
+`NavSidebar` component — persistent collapsible right-side panel with route list grouped by section. Present on all pages. Footer fetches `/version.json` when a deployed app serves it and renders the 7-char SHA linked to the GitHub commit plus a relative timestamp ticking every 60s. The footer hides if `/version.json` 404s (dev mode); `frontend/public/version.json` is gitignored so dev fixtures don't get committed.
 
 ## Architecture Data
 

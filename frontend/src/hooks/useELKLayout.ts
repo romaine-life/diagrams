@@ -112,7 +112,7 @@ export function useELKLayout(
   }, [inputNodes, inputEdges, options])
 
   useEffect(() => {
-    runLayout()
+    void Promise.resolve().then(runLayout)
   }, [runLayout])
 
   return { nodes, edges, layoutReady }

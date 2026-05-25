@@ -548,7 +548,7 @@ export default function CIFztView({ injected, titleOverride }: CIFztViewProps = 
       }
     }
     prevActive.current = hasActiveRuns
-  }, [hasActiveRuns, runs.size])
+  }, [hasActiveRuns, runs.size, title])
 
   return (
     <div className="w-screen h-screen bg-[#0f172a]">

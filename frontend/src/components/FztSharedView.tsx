@@ -21,6 +21,12 @@ const nodeTypes = {
 }
 
 const TOOL_IDS = new Set(['tool-automate', 'tool-picker', 'tool-homepage', 'tool-showcase'])
+const TOOL_NAMES: Record<string, string> = {
+  'tool-automate': 'fzt-automate',
+  'tool-picker': 'fzt-picker',
+  'tool-homepage': 'my-homepage',
+  'tool-showcase': 'fzt-showcase',
+}
 
 function findReachable(startId: string, edges: Edge[]): Set<string> {
   const reachable = new Set<string>([startId])
@@ -88,13 +94,6 @@ export default function FztSharedView() {
   }, [])
 
   const navigate = useNavigate()
-  // Tool name mapping for URL (node id → tool config name)
-  const TOOL_NAMES: Record<string, string> = {
-    'tool-automate': 'fzt-automate',
-    'tool-picker': 'fzt-picker',
-    'tool-homepage': 'my-homepage',
-    'tool-showcase': 'fzt-showcase',
-  }
   const onNodeClick = useCallback((_: React.MouseEvent, node: { id: string }) => {
     const toolName = TOOL_NAMES[node.id]
     if (toolName) navigate(`/fzt/tool/${toolName}`)
