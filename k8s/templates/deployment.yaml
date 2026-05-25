@@ -33,7 +33,7 @@ spec:
             - name: PORT
               value: "3000"
             - name: KEY_VAULT_URL
-              value: https://romaine-kv.vault.azure.net/
+              value: https://ng6-diagrams.vault.azure.net/
           resources:
             requests:
               cpu: 50m
