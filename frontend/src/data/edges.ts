@@ -28,7 +28,7 @@ export const edges: InfraEdge[] = [
     animated: true,
   })),
 
-  // ── Key Vault → Managed Identity ────────────────────────────
+  // ── Key Vaults → External Secrets identity ──────────────────
   {
     id: 'keyvault-identity',
     source: 'keyvault',

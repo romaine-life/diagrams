@@ -17,6 +17,7 @@ export function useSSE(enabled: boolean) {
   const esRef = useRef<EventSource | null>(null)
   const retryRef = useRef(0)
   const timerRef = useRef<number | null>(null)
+  const connectRef = useRef<(() => void) | null>(null)
 
   const connect = useCallback(() => {
     if (esRef.current) return
@@ -86,9 +87,13 @@ export function useSSE(enabled: boolean) {
 
       const delay = Math.min(1000 * 2 ** retryRef.current, 30000)
       retryRef.current++
-      timerRef.current = window.setTimeout(connect, delay)
+      timerRef.current = window.setTimeout(() => connectRef.current?.(), delay)
     }
   }, [])
+
+  useEffect(() => {
+    connectRef.current = connect
+  }, [connect])
 
   const disconnect = useCallback(() => {
     if (timerRef.current) {
@@ -105,9 +110,9 @@ export function useSSE(enabled: boolean) {
 
   useEffect(() => {
     if (enabled) {
-      connect()
+      void Promise.resolve().then(connect)
     } else {
-      disconnect()
+      void Promise.resolve().then(disconnect)
     }
     return disconnect
   }, [enabled, connect, disconnect])

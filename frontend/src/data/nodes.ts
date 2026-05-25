@@ -136,8 +136,8 @@ export const nodes: InfraNode[] = [
     type: 'infra',
     position: { x: COL.midRight, y: ROW.data },
     data: {
-      label: 'Key Vault',
-      description: 'Stores API keys and connection strings. Accessed by shared API via managed identity.',
+      label: 'Key Vaults',
+      description: 'App-owned vaults for runtime secrets; platform vaults for platform-owned material.',
       icon: 'KeyRound',
       category: 'shared',
       apps: [],
@@ -149,7 +149,7 @@ export const nodes: InfraNode[] = [
     position: { x: COL.midRight, y: ROW.api },
     data: {
       label: 'App Configuration',
-      description: 'Centralized feature flags and configuration for all apps.',
+      description: 'Runtime feature flags and app settings where services need centralized config.',
       icon: 'Settings',
       category: 'shared',
       apps: [],
@@ -161,7 +161,7 @@ export const nodes: InfraNode[] = [
     position: { x: COL.right, y: ROW.data },
     data: {
       label: 'Managed Identity',
-      description: 'infra-shared-identity — user-assigned, pre-assigned RBAC roles for all shared resources.',
+      description: 'infra-shared-identity lets External Secrets read app-owned vaults through scoped RBAC.',
       icon: 'Fingerprint',
       category: 'shared',
       apps: [],
@@ -275,7 +275,7 @@ export const nodes: InfraNode[] = [
     position: { x: COL.left, y: ROW.cicd + 200 },
     data: {
       label: 'infra-bootstrap',
-      description: 'Root IaC repo (OpenTofu). Creates shared resources: Container App Env, Cosmos DB, DNS, Key Vault, managed identity.',
+      description: 'Root IaC repo. Owns platform resources and CI identities; app repos own runtime Key Vaults.',
       icon: 'Blocks',
       category: 'infra',
       apps: [],
