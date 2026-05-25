@@ -18,7 +18,7 @@ data "azurerm_resource_group" "infra" {
 }
 
 data "azurerm_key_vault" "main" {
-  name                = "romaine-kv"
+  name                = local.infra.shared_key_vault
   resource_group_name = local.infra.resource_group_name
 }
 
@@ -40,6 +40,12 @@ locals {
 resource "azurerm_role_assignment" "diagrams_kv_secrets" {
   for_each             = toset(local.diagrams_kv_secrets)
   scope                = "${data.azurerm_key_vault.main.id}/secrets/${each.key}"
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = azurerm_user_assigned_identity.diagrams.principal_id
+}
+
+resource "azurerm_role_assignment" "diagrams_app_keyvault" {
+  scope                = azurerm_key_vault.main.id
   role_definition_name = "Key Vault Secrets User"
   principal_id         = azurerm_user_assigned_identity.diagrams.principal_id
 }
