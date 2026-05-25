@@ -3,7 +3,6 @@ locals {
   infra = {
     resource_group_name = "infra"
     dns_zone_name       = "romaine.life"
-    shared_key_vault    = "romaine-kv"
   }
 }
 
