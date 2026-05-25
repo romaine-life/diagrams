@@ -3,8 +3,11 @@ locals {
   infra = {
     resource_group_name = "infra"
     dns_zone_name       = "romaine.life"
+    shared_key_vault    = "romaine-kv"
   }
 }
+
+data "azurerm_client_config" "current" {}
 
 # AKS cluster OIDC issuer URL comes from infra-bootstrap's state output.
 # Can't read it directly from `data "azurerm_kubernetes_cluster"` here:
