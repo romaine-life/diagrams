@@ -91,7 +91,7 @@ export default function CIFztTestView() {
     }
     const deployed = new Map<string, DeployedVersion>()
     for (const [consumer, versionMap] of Object.entries(perConsumerVersions)) {
-      deployed.set(consumer, makeDeployed(`github.com/nelsong6/${consumer}`, consumer, versionMap))
+      deployed.set(consumer, makeDeployed(`github.com/romaine-life/${consumer}`, consumer, versionMap))
     }
 
     return { runs, versions, deployed }

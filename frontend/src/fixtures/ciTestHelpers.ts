@@ -27,7 +27,7 @@ export function makeRun(repo: string, status: TestRunStatus): CIRun | null {
   if (status === 'no_runs') return null
   const isInProgress = status === 'in_progress' || status === 'queued'
   return {
-    repo: `nelsong6/${repo}`,
+    repo: `romaine-life/${repo}`,
     repoName: repo,
     workflow: 'Build',
     workflowId: 1,
@@ -39,7 +39,7 @@ export function makeRun(repo: string, status: TestRunStatus): CIRun | null {
     headSha: 'abc1234',
     commitMessage: `test: ${status} fixture`,
     event: 'push',
-    htmlUrl: `https://github.com/nelsong6/${repo}`,
+    htmlUrl: `https://github.com/romaine-life/${repo}`,
     startedAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     action: isInProgress ? 'in_progress' : 'completed',
@@ -48,11 +48,11 @@ export function makeRun(repo: string, status: TestRunStatus): CIRun | null {
 
 export function makeVersion(repo: string, version: string): PublishedVersion {
   return {
-    repo: `nelsong6/${repo}`,
+    repo: `romaine-life/${repo}`,
     repoName: repo,
     version,
     publishedAt: new Date().toISOString(),
-    htmlUrl: `https://github.com/nelsong6/${repo}/releases`,
+    htmlUrl: `https://github.com/romaine-life/${repo}/releases`,
   }
 }
 

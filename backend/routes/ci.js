@@ -112,13 +112,13 @@ export function createCIRoutes({ webhookSecret, githubAppId, githubAppPrivateKey
     const token = await getGitHubToken();
     if (!token) return;
     const res = await fetch(
-      `https://api.github.com/repos/nelsong6/${repoName}/contents/go.mod?ref=${tag}`,
+      `https://api.github.com/repos/romaine-life/${repoName}/contents/go.mod?ref=${tag}`,
       { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github+json' } },
     );
     if (!res.ok) {
       // Picker has go.mod in frontend/ subdirectory
       const altRes = await fetch(
-        `https://api.github.com/repos/nelsong6/${repoName}/contents/frontend/go.mod?ref=${tag}`,
+        `https://api.github.com/repos/romaine-life/${repoName}/contents/frontend/go.mod?ref=${tag}`,
         { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github+json' } },
       );
       if (!altRes.ok) return;
@@ -137,7 +137,7 @@ export function createCIRoutes({ webhookSecret, githubAppId, githubAppPrivateKey
     }
     if (Object.keys(extracted).length > 0) {
       const deployed = {
-        site: `github.com/nelsong6/${repoName}`,
+        site: `github.com/romaine-life/${repoName}`,
         repo: repoName,
         versions: extracted,
         reportedAt: new Date().toISOString(),
@@ -170,7 +170,7 @@ export function createCIRoutes({ webhookSecret, githubAppId, githubAppPrivateKey
 
   function toRun(wr) {
     return {
-      repo: wr.repository?.full_name || `nelsong6/${wr.name}`,
+      repo: wr.repository?.full_name || `romaine-life/${wr.name}`,
       repoName: wr.repository?.name || wr.name,
       workflow: wr.name || wr.workflow_name || '',
       workflowId: wr.workflow_id,
@@ -238,7 +238,7 @@ export function createCIRoutes({ webhookSecret, githubAppId, githubAppPrivateKey
       const fetches = REPOS.map(async (repo) => {
         try {
           const res = await fetch(
-            `https://api.github.com/repos/nelsong6/${repo}/actions/runs?per_page=5&branch=main`,
+            `https://api.github.com/repos/romaine-life/${repo}/actions/runs?per_page=5&branch=main`,
             { headers },
           );
           if (!res.ok) return;
@@ -246,7 +246,7 @@ export function createCIRoutes({ webhookSecret, githubAppId, githubAppPrivateKey
           for (const wr of data.workflow_runs || []) {
             if (isDependabot(wr)) continue;
             const run = toRun(wr);
-            run.repo = `nelsong6/${repo}`;
+            run.repo = `romaine-life/${repo}`;
             run.repoName = repo;
             runs.set(`${run.repo}/${run.runId}`, run);
           }
@@ -280,7 +280,7 @@ export function createCIRoutes({ webhookSecret, githubAppId, githubAppPrivateKey
       const releaseFetches = REPOS.map(async (repo) => {
         try {
           const res = await fetch(
-            `https://api.github.com/repos/nelsong6/${repo}/releases/latest`,
+            `https://api.github.com/repos/romaine-life/${repo}/releases/latest`,
             { headers },
           );
           if (res.status === 404) return; // no releases — expected
@@ -292,7 +292,7 @@ export function createCIRoutes({ webhookSecret, githubAppId, githubAppPrivateKey
           }
           const rel = await res.json();
           versions.set(repo, {
-            repo: `nelsong6/${repo}`,
+            repo: `romaine-life/${repo}`,
             repoName: repo,
             version: rel.tag_name,
             publishedAt: rel.published_at,
