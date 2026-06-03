@@ -28,7 +28,7 @@ export default function FztKeyboardView() {
         </Link>
         <h1 className="text-sm font-bold text-slate-300">fzt Keyboard State Model</h1>
         <a
-          href="https://github.com/nelsong6/fzt-terminal/blob/main/CLAUDE.md"
+          href="https://github.com/romaine-life/fzt-terminal/blob/main/CLAUDE.md"
           target="_blank"
           rel="noreferrer"
           className="text-xs text-slate-500 hover:text-slate-300 transition-colors"

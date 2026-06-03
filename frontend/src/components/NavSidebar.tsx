@@ -35,7 +35,7 @@ function VersionFooter() {
   return (
     <div className="border-t border-slate-700 px-3 py-2 text-[10px] text-slate-500 leading-tight">
       <a
-        href={`https://github.com/nelsong6/diagrams/commit/${info.sha}`}
+        href={`https://github.com/romaine-life/diagrams/commit/${info.sha}`}
         target="_blank"
         rel="noreferrer"
         className="font-mono hover:text-slate-300 transition-colors"

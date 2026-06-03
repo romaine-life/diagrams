@@ -39,7 +39,7 @@ type ToolRow = {
 const tools: ToolRow[] = [
   {
     name: 'fzt-automate',
-    repo: 'nelsong6/fzt-automate',
+    repo: 'romaine-life/fzt-automate',
     cells: {
       'renderers': { repo: 'fzt-terminal', label: 'terminal' },
       'frontend-palette': { repo: 'fzt-frontend' },
@@ -55,7 +55,7 @@ const tools: ToolRow[] = [
   },
   {
     name: 'fzt-picker',
-    repo: 'nelsong6/fzt-picker',
+    repo: 'romaine-life/fzt-picker',
     cells: {
       'renderers': { repo: 'fzt-terminal', label: 'terminal' },
       'frontend-palette': { repo: 'fzt-frontend' },
@@ -71,7 +71,7 @@ const tools: ToolRow[] = [
   },
   {
     name: 'my-homepage',
-    repo: 'nelsong6/my-homepage',
+    repo: 'romaine-life/my-homepage',
     cells: {
       'renderers': { repo: 'fzt-browser', label: 'browser' },
       'frontend-palette': { repo: 'fzt-frontend' },
@@ -87,7 +87,7 @@ const tools: ToolRow[] = [
   },
   {
     name: 'fzt-showcase',
-    repo: 'nelsong6/fzt-showcase',
+    repo: 'romaine-life/fzt-showcase',
     cells: {
       'renderers': { repo: 'fzt-browser', label: 'browser' },
       'frontend-palette': { repo: 'fzt-frontend' },
@@ -105,11 +105,11 @@ const tools: ToolRow[] = [
 
 // Group columns by repo for header
 const COL_GROUPS = [
-  { label: 'Renderers', repo: 'nelsong6/fzt', cols: ['renderers'], color: '#64748b' },
-  { label: 'Frontend', repo: 'nelsong6/fzt-frontend', cols: ['frontend-palette', 'frontend-identity', 'frontend-actions'], color: '#f59e0b' },
+  { label: 'Renderers', repo: 'romaine-life/fzt', cols: ['renderers'], color: '#64748b' },
+  { label: 'Frontend', repo: 'romaine-life/fzt-frontend', cols: ['frontend-palette', 'frontend-identity', 'frontend-actions'], color: '#f59e0b' },
   { label: 'Style', repo: 'nelsong6/fzt-style', cols: ['style-palette', 'style-font', 'style-crt'], color: '#f472b6' },
-  { label: 'Providers', repo: 'nelsong6/fzt', cols: ['providers'], color: '#a78bfa' },
-  { label: 'Engine', repo: 'nelsong6/fzt', cols: ['engine-scorer', 'engine-tree'], color: '#38bdf8' },
+  { label: 'Providers', repo: 'romaine-life/fzt', cols: ['providers'], color: '#a78bfa' },
+  { label: 'Engine', repo: 'romaine-life/fzt', cols: ['engine-scorer', 'engine-tree'], color: '#38bdf8' },
 ]
 
 export default function FztMatrixView() {

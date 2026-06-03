@@ -15,15 +15,15 @@ const COL = { engine: 0, eco: 380, tools: 800 }
 const ROW = { r0: 0, r1: 120, r2: 240, r3: 360, r4: 480 }
 
 export const fztFinalNodes: FztFinalNode[] = [
-  // ── nelsong6/fzt — the engine ────────────────────────────────
+  // ── romaine-life/fzt — the engine ────────────────────────────────
   {
     id: 'repo-fzt',
     type: 'fzt-final',
     position: { x: COL.engine - 10, y: ROW.r0 - 50 },
     data: {
-      label: 'nelsong6/fzt',
+      label: 'romaine-life/fzt',
       description: 'Pure engine. No rendering, no style, no frontend. Library + scorer CLI.',
-      repo: 'nelsong6/fzt',
+      repo: 'romaine-life/fzt',
       category: 'engine',
     },
   },
@@ -52,15 +52,15 @@ export const fztFinalNodes: FztFinalNode[] = [
     data: { label: 'fzt.exe', description: 'echo lines | fzt "query" → ranked output. No TUI.', category: 'binary' },
   },
 
-  // ── nelsong6/fzt-terminal — Nelson's ecosystem ───────────────
+  // ── romaine-life/fzt-terminal — Nelson's ecosystem ───────────────
   {
     id: 'repo-eco',
     type: 'fzt-final',
     position: { x: COL.eco - 10, y: ROW.r0 - 50 },
     data: {
-      label: 'nelsong6/fzt-terminal',
+      label: 'romaine-life/fzt-terminal',
       description: 'Your ecosystem. Renderers, style, frontend behavior, web assets. Imports fzt.',
-      repo: 'nelsong6/fzt-terminal',
+      repo: 'romaine-life/fzt-terminal',
       category: 'ecosystem',
     },
   },
@@ -88,24 +88,24 @@ export const fztFinalNodes: FztFinalNode[] = [
     id: 'tool-automate',
     type: 'fzt-final',
     position: { x: COL.tools, y: ROW.r0 },
-    data: { label: 'fzt-automate', description: 'Shell automation. YAML menu → pick → execute.', repo: 'nelsong6/fzt-automate', category: 'tool' },
+    data: { label: 'fzt-automate', description: 'Shell automation. YAML menu → pick → execute.', repo: 'romaine-life/fzt-automate', category: 'tool' },
   },
   {
     id: 'tool-picker',
     type: 'fzt-final',
     position: { x: COL.tools, y: ROW.r1 },
-    data: { label: 'fzt-picker', description: 'File dialog replacement. DirProvider + Rust COM hook.', repo: 'nelsong6/fzt-picker', category: 'tool' },
+    data: { label: 'fzt-picker', description: 'File dialog replacement. DirProvider + Rust COM hook.', repo: 'romaine-life/fzt-picker', category: 'tool' },
   },
   {
     id: 'tool-homepage',
     type: 'fzt-final',
     position: { x: COL.tools, y: ROW.r2 },
-    data: { label: 'my-homepage', description: 'Bookmark manager. WASM + browser renderer.', repo: 'nelsong6/my-homepage', category: 'tool' },
+    data: { label: 'my-homepage', description: 'Bookmark manager. WASM + browser renderer.', repo: 'romaine-life/my-homepage', category: 'tool' },
   },
   {
     id: 'tool-showcase',
     type: 'fzt-final',
     position: { x: COL.tools, y: ROW.r3 },
-    data: { label: 'fzt-showcase', description: 'Interactive demo. WASM + browser renderer.', repo: 'nelsong6/fzt-showcase', category: 'tool' },
+    data: { label: 'fzt-showcase', description: 'Interactive demo. WASM + browser renderer.', repo: 'romaine-life/fzt-showcase', category: 'tool' },
   },
 ]

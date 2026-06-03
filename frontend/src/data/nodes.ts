@@ -32,7 +32,7 @@ export const nodes: InfraNode[] = [
       category: 'app',
       apps: ['kill-me'],
       subdomain: 'kill-me.romaine.life',
-      url: 'https://github.com/nelsong6/kill-me',
+      url: 'https://github.com/romaine-life/kill-me',
     },
   },
   {
@@ -60,7 +60,7 @@ export const nodes: InfraNode[] = [
       category: 'app',
       apps: ['lights'],
       subdomain: 'lights.romaine.life',
-      url: 'https://github.com/nelsong6/lights',
+      url: 'https://github.com/romaine-life/lights',
     },
   },
   {
@@ -74,7 +74,7 @@ export const nodes: InfraNode[] = [
       category: 'app',
       apps: ['my-homepage'],
       subdomain: 'homepage.romaine.life',
-      url: 'https://github.com/nelsong6/my-homepage',
+      url: 'https://github.com/romaine-life/my-homepage',
     },
   },
   {
@@ -88,7 +88,7 @@ export const nodes: InfraNode[] = [
       category: 'app',
       apps: ['bender-world'],
       subdomain: 'bender.romaine.life',
-      url: 'https://github.com/nelsong6/bender-world',
+      url: 'https://github.com/romaine-life/bender-world',
     },
   },
   {
@@ -102,7 +102,7 @@ export const nodes: InfraNode[] = [
       category: 'app',
       apps: ['eight-queens'],
       subdomain: 'queens.romaine.life',
-      url: 'https://github.com/nelsong6/eight-queens',
+      url: 'https://github.com/romaine-life/eight-queens',
     },
   },
 
@@ -279,7 +279,7 @@ export const nodes: InfraNode[] = [
       icon: 'Blocks',
       category: 'infra',
       apps: [],
-      url: 'https://github.com/nelsong6/infra-bootstrap',
+      url: 'https://github.com/romaine-life/infra-bootstrap',
     },
   },
 ]

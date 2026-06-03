@@ -2,11 +2,11 @@ import { Link, useParams } from 'react-router-dom'
 import { toolConfigs, type LayerItem } from '../data/fzt-tool-configs'
 
 const LAYERS = [
-  { key: 'renderers', label: 'Renderers', repo: 'nelsong6/fzt', color: '#64748b', bg: '#1e293b' },
-  { key: 'frontend', label: 'Frontend', repo: 'nelsong6/fzt-frontend', color: '#f59e0b', bg: '#2a2010' },
+  { key: 'renderers', label: 'Renderers', repo: 'romaine-life/fzt', color: '#64748b', bg: '#1e293b' },
+  { key: 'frontend', label: 'Frontend', repo: 'romaine-life/fzt-frontend', color: '#f59e0b', bg: '#2a2010' },
   { key: 'style', label: 'Style', repo: 'nelsong6/fzt-style', color: '#f472b6', bg: '#2a1025' },
-  { key: 'providers', label: 'Providers', repo: 'nelsong6/fzt', color: '#a78bfa', bg: '#1e1b2e' },
-  { key: 'engine', label: 'Engine', repo: 'nelsong6/fzt', color: '#38bdf8', bg: '#0c1929' },
+  { key: 'providers', label: 'Providers', repo: 'romaine-life/fzt', color: '#a78bfa', bg: '#1e1b2e' },
+  { key: 'engine', label: 'Engine', repo: 'romaine-life/fzt', color: '#38bdf8', bg: '#0c1929' },
 ] as const
 
 function LayerRow({ layer, items }: { layer: typeof LAYERS[number]; items: LayerItem[] }) {

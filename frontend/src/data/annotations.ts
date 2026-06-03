@@ -22,7 +22,7 @@ Cosmos DB stores plants, events, analyses, chats, and rooms across five containe
 
 Like plant-agent, it uses sql.js/WASM snapshots so anyone can view workout history without logging in.`,
     links: [
-      { label: 'GitHub', url: 'https://github.com/nelsong6/kill-me' },
+      { label: 'GitHub', url: 'https://github.com/romaine-life/kill-me' },
       { label: 'Live', url: 'https://kill-me.romaine.life' },
     ],
   },
@@ -46,7 +46,7 @@ Uses app-owned backend routes with Cosmos DB-backed portfolio data.`,
 
 Has both a public unauthenticated mode and an admin mode (MSAL). Cosmos DB (LightsDB) is provisioned but reserved for future use.`,
     links: [
-      { label: 'GitHub', url: 'https://github.com/nelsong6/lights' },
+      { label: 'GitHub', url: 'https://github.com/romaine-life/lights' },
       { label: 'Live', url: 'https://lights.romaine.life' },
     ],
   },
@@ -58,7 +58,7 @@ Has both a public unauthenticated mode and an admin mode (MSAL). Cosmos DB (Ligh
 
 Bookmark data lives in Cosmos DB-backed storage for the app.`,
     links: [
-      { label: 'GitHub', url: 'https://github.com/nelsong6/my-homepage' },
+      { label: 'GitHub', url: 'https://github.com/romaine-life/my-homepage' },
       { label: 'Live', url: 'https://homepage.romaine.life' },
     ],
   },
@@ -70,7 +70,7 @@ Bookmark data lives in Cosmos DB-backed storage for the app.`,
 
 Uses @tanstack/react-virtual and react-table for performant rendering of large Q-matrices.`,
     links: [
-      { label: 'GitHub', url: 'https://github.com/nelsong6/bender-world' },
+      { label: 'GitHub', url: 'https://github.com/romaine-life/bender-world' },
       { label: 'Live', url: 'https://bender.romaine.life' },
     ],
   },
@@ -80,7 +80,7 @@ Uses @tanstack/react-virtual and react-table for performant rendering of large Q
     title: 'eight-queens',
     body: `A genetic algorithm visualizer for the classic 8-queens puzzle. Pure frontend, minimal dependencies. Like bender-world, the algorithm engine is cleanly separated from the UI layer.`,
     links: [
-      { label: 'GitHub', url: 'https://github.com/nelsong6/eight-queens' },
+      { label: 'GitHub', url: 'https://github.com/romaine-life/eight-queens' },
       { label: 'Live', url: 'https://queens.romaine.life' },
     ],
   },
@@ -203,7 +203,7 @@ Includes templates for: tofu-outputs (fetch infrastructure outputs), SWA deploym
 
 It also creates the CI app registrations, service principals, GitHub Actions variables, and OIDC federated credentials that app repos use to provision their own runtime infrastructure. App-owned Key Vaults now live in the app repos, not in infra-bootstrap.`,
     links: [
-      { label: 'GitHub', url: 'https://github.com/nelsong6/infra-bootstrap' },
+      { label: 'GitHub', url: 'https://github.com/romaine-life/infra-bootstrap' },
     ],
   },
 }

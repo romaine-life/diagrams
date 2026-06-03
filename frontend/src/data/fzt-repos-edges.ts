@@ -7,7 +7,7 @@ const CONSUMES = { stroke: '#4ade80', strokeWidth: 1.5 }     // green: tool impo
 const labelStyle = { fill: '#94a3b8', fontSize: 9 }
 
 export const fztReposEdges: Edge[] = [
-  // ── Within nelsong6/fzt ────────────────────────────────────
+  // ── Within romaine-life/fzt ────────────────────────────────────
   { id: 'i-tree-scorer', source: 'pkg-tree', target: 'pkg-scorer', style: INTERNAL },
   { id: 'i-input-tree', source: 'pkg-input', target: 'pkg-tree', style: INTERNAL },
   { id: 'i-input-scorer', source: 'pkg-input', target: 'pkg-scorer', style: INTERNAL },

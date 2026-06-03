@@ -27,27 +27,27 @@ const LAYER = {
 export const fztSharedNodes: FztSharedNode[] = [
   // ── Layer 5: Tools ───────────────────────────────────────────
   { id: 'tool-automate', type: 'fzt-shared', position: { x: col(0), y: LAYER.tools },
-    data: { label: 'fzt-automate', description: 'Shell automation', repo: 'nelsong6/fzt-automate', category: 'tool' } },
+    data: { label: 'fzt-automate', description: 'Shell automation', repo: 'romaine-life/fzt-automate', category: 'tool' } },
   { id: 'tool-picker', type: 'fzt-shared', position: { x: col(1), y: LAYER.tools },
-    data: { label: 'fzt-picker', description: 'File dialog replacement', repo: 'nelsong6/fzt-picker', category: 'tool' } },
+    data: { label: 'fzt-picker', description: 'File dialog replacement', repo: 'romaine-life/fzt-picker', category: 'tool' } },
   { id: 'tool-homepage', type: 'fzt-shared', position: { x: col(2), y: LAYER.tools },
-    data: { label: 'my-homepage', description: 'Bookmark manager', repo: 'nelsong6/my-homepage', category: 'tool' } },
+    data: { label: 'my-homepage', description: 'Bookmark manager', repo: 'romaine-life/my-homepage', category: 'tool' } },
   { id: 'tool-showcase', type: 'fzt-shared', position: { x: col(3), y: LAYER.tools },
-    data: { label: 'fzt-showcase', description: 'Interactive demo', repo: 'nelsong6/fzt-showcase', category: 'tool' } },
+    data: { label: 'fzt-showcase', description: 'Interactive demo', repo: 'romaine-life/fzt-showcase', category: 'tool' } },
 
   // ── Layer 4: Renderers ───────────────────────────────────────
   { id: 'render-terminal', type: 'fzt-shared', position: { x: col(0) + W/2 - W/2, y: LAYER.renderers },
-    data: { label: 'terminal renderer', description: 'tcellCanvas, draw functions, TTY I/O', repo: 'nelsong6/fzt', category: 'renderer' } },
+    data: { label: 'terminal renderer', description: 'tcellCanvas, draw functions, TTY I/O', repo: 'romaine-life/fzt', category: 'renderer' } },
   { id: 'render-browser', type: 'fzt-shared', position: { x: col(2), y: LAYER.renderers },
-    data: { label: 'browser renderer + WASM', description: 'fzt-terminal.js, DOM renderer, fzt.wasm bridge', repo: 'nelsong6/fzt', category: 'renderer' } },
+    data: { label: 'browser renderer + WASM', description: 'fzt-terminal.js, DOM renderer, fzt.wasm bridge', repo: 'romaine-life/fzt', category: 'renderer' } },
 
   // ── Layer 3: Frontend logic ──────────────────────────────────
   { id: 'fe-palette', type: 'fzt-shared', position: { x: col(0), y: LAYER.frontend },
-    data: { label: ': command palette', description: 'Two-level : / :: structure, command registration', repo: 'nelsong6/fzt-frontend', category: 'frontend' } },
+    data: { label: ': command palette', description: 'Two-level : / :: structure, command registration', repo: 'romaine-life/fzt-frontend', category: 'frontend' } },
   { id: 'fe-identity', type: 'fzt-shared', position: { x: col(1) + 40, y: LAYER.frontend },
-    data: { label: 'identity', description: 'Name, version, ctl title swap', repo: 'nelsong6/fzt-frontend', category: 'frontend' } },
+    data: { label: 'identity', description: 'Name, version, ctl title swap', repo: 'romaine-life/fzt-frontend', category: 'frontend' } },
   { id: 'fe-actions', type: 'fzt-shared', position: { x: col(2) + 80, y: LAYER.frontend },
-    data: { label: 'action routing', description: 'Action string contract, post-selection dispatch', repo: 'nelsong6/fzt-frontend', category: 'frontend' } },
+    data: { label: 'action routing', description: 'Action string contract, post-selection dispatch', repo: 'romaine-life/fzt-frontend', category: 'frontend' } },
 
   // ── Layer 2: Style ───────────────────────────────────────────
   { id: 'style-colors', type: 'fzt-shared', position: { x: col(0), y: LAYER.style },
@@ -59,9 +59,9 @@ export const fztSharedNodes: FztSharedNode[] = [
 
   // ── Layer 1: Engine ──────────────────────────────────────────
   { id: 'engine-scorer', type: 'fzt-shared', position: { x: col(0), y: LAYER.engine },
-    data: { label: 'scorer', description: 'FuzzyMatch, tiered scoring — the atom', repo: 'nelsong6/fzt', category: 'engine' } },
+    data: { label: 'scorer', description: 'FuzzyMatch, tiered scoring — the atom', repo: 'romaine-life/fzt', category: 'engine' } },
   { id: 'engine-tree', type: 'fzt-shared', position: { x: col(1) + 40, y: LAYER.engine },
-    data: { label: 'tree + interaction', description: 'Scope, filtering, cursor, key handlers', repo: 'nelsong6/fzt', category: 'engine' } },
+    data: { label: 'tree + interaction', description: 'Scope, filtering, cursor, key handlers', repo: 'romaine-life/fzt', category: 'engine' } },
   { id: 'engine-providers', type: 'fzt-shared', position: { x: col(2) + 80, y: LAYER.engine },
-    data: { label: 'providers', description: 'YAML loader, DirProvider, TreeProvider interface', repo: 'nelsong6/fzt', category: 'engine' } },
+    data: { label: 'providers', description: 'YAML loader, DirProvider, TreeProvider interface', repo: 'romaine-life/fzt', category: 'engine' } },
 ]

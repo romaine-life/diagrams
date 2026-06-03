@@ -25,7 +25,7 @@ export const fztArchNodes: FztArchNode[] = [
     data: {
       label: 'core/',
       description: 'State management, scoring, tree logic, style constants, TreeProvider interface, key handlers, DirProvider',
-      pkg: 'github.com/nelsong6/fzt/core',
+      pkg: 'github.com/romaine-life/fzt/core',
       category: 'package',
     },
   },
@@ -39,7 +39,7 @@ export const fztArchNodes: FztArchNode[] = [
     data: {
       label: 'render/',
       description: 'Canvas interface, MemScreen, ANSI serialization, Session (headless), structured data API',
-      pkg: 'github.com/nelsong6/fzt/render',
+      pkg: 'github.com/romaine-life/fzt/render',
       category: 'package',
     },
   },
@@ -53,7 +53,7 @@ export const fztArchNodes: FztArchNode[] = [
     data: {
       label: 'internal/tui/',
       description: 'Terminal frontend: tcellCanvas, draw functions, Run/RunInline, raw terminal I/O',
-      pkg: 'github.com/nelsong6/fzt/internal/tui',
+      pkg: 'github.com/romaine-life/fzt/internal/tui',
       category: 'package',
     },
   },

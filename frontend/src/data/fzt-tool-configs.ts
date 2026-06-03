@@ -42,7 +42,7 @@ const FRONTEND_FULL: LayerItem[] = [
 export const toolConfigs: ToolConfig[] = [
   {
     name: 'fzt-automate',
-    repo: 'nelsong6/fzt-automate',
+    repo: 'romaine-life/fzt-automate',
     description: 'Shell automation. YAML menu → fzt engine → shell function execution.',
     providers: [{ label: 'YAML loader', description: 'Static menu from at-menu/root.yaml' }],
     style: STYLE_TERMINAL,
@@ -52,7 +52,7 @@ export const toolConfigs: ToolConfig[] = [
   },
   {
     name: 'fzt-picker',
-    repo: 'nelsong6/fzt-picker',
+    repo: 'romaine-life/fzt-picker',
     description: 'File dialog replacement. Rust COM hook, lazy directory browsing.',
     providers: [{ label: 'DirProvider', description: 'Lazy filesystem loading per scope push' }],
     style: STYLE_TERMINAL,
@@ -62,7 +62,7 @@ export const toolConfigs: ToolConfig[] = [
   },
   {
     name: 'my-homepage',
-    repo: 'nelsong6/my-homepage',
+    repo: 'romaine-life/my-homepage',
     description: 'Bookmark manager. WASM engine, edit mode, cookie auth.',
     providers: [{ label: 'YAML loader', description: 'Bookmarks from API → YAML → fzt' }],
     style: STYLE_BROWSER,
@@ -75,7 +75,7 @@ export const toolConfigs: ToolConfig[] = [
   },
   {
     name: 'fzt-showcase',
-    repo: 'nelsong6/fzt-showcase',
+    repo: 'romaine-life/fzt-showcase',
     description: 'Interactive demo site for fzt.',
     providers: [{ label: 'YAML loader', description: 'Sample bookmarks from static YAML' }],
     style: STYLE_BROWSER,

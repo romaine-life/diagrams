@@ -12,23 +12,23 @@ const REPOS = [
 // Go dependencies to extract from go.mod on release events
 const GO_DEPS = {
   'fzt-frontend': [
-    { module: 'github.com/nelsong6/fzt', field: 'fzt' },
+    { module: 'github.com/romaine-life/fzt', field: 'fzt' },
   ],
   'fzt-terminal': [
-    { module: 'github.com/nelsong6/fzt', field: 'fzt' },
-    { module: 'github.com/nelsong6/fzt-frontend', field: 'fztFrontend' },
+    { module: 'github.com/romaine-life/fzt', field: 'fzt' },
+    { module: 'github.com/romaine-life/fzt-frontend', field: 'fztFrontend' },
   ],
   'fzt-automate': [
-    { module: 'github.com/nelsong6/fzt', field: 'fzt' },
-    { module: 'github.com/nelsong6/fzt-terminal', field: 'fztTerminal' },
+    { module: 'github.com/romaine-life/fzt', field: 'fzt' },
+    { module: 'github.com/romaine-life/fzt-terminal', field: 'fztTerminal' },
   ],
   'fzt-browser': [
-    { module: 'github.com/nelsong6/fzt', field: 'fzt' },
-    { module: 'github.com/nelsong6/fzt-terminal', field: 'fztTerminal' },
+    { module: 'github.com/romaine-life/fzt', field: 'fzt' },
+    { module: 'github.com/romaine-life/fzt-terminal', field: 'fztTerminal' },
   ],
   'fzt-picker': [
-    { module: 'github.com/nelsong6/fzt', field: 'fzt' },
-    { module: 'github.com/nelsong6/fzt-terminal', field: 'fztTerminal' },
+    { module: 'github.com/romaine-life/fzt', field: 'fzt' },
+    { module: 'github.com/romaine-life/fzt-terminal', field: 'fztTerminal' },
   ],
 };
 

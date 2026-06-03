@@ -15,16 +15,16 @@ const REPO = { fzt: 0, style: 350, frontend: 650, renderers: 1000, tools: 1400 }
 const ROW = { label: -40, r0: 40, r1: 160, r2: 280, r3: 400, r4: 520, r5: 640 }
 
 export const fztReposNodes: FztReposNode[] = [
-  // ── Repo: nelsong6/fzt ───────────────────────────────────────
+  // ── Repo: romaine-life/fzt ───────────────────────────────────────
   // The engine. Scorer + tree + interaction + providers + rendering infra.
   {
     id: 'repo-fzt',
     type: 'fzt-repos',
     position: { x: REPO.fzt - 20, y: ROW.label },
     data: {
-      label: 'nelsong6/fzt',
+      label: 'romaine-life/fzt',
       description: 'The engine. Scorer, tree structure, interaction, providers, rendering infra. No binary — you import it.',
-      repo: 'nelsong6/fzt',
+      repo: 'romaine-life/fzt',
       category: 'repo-boundary',
     },
   },
@@ -112,15 +112,15 @@ export const fztReposNodes: FztReposNode[] = [
     },
   },
 
-  // ── Repo: nelsong6/fzt-frontend ──────────────────────────────
+  // ── Repo: romaine-life/fzt-frontend ──────────────────────────────
   {
     id: 'repo-frontend',
     type: 'fzt-repos',
     position: { x: REPO.frontend - 20, y: ROW.label },
     data: {
-      label: 'nelsong6/fzt-frontend',
+      label: 'romaine-life/fzt-frontend',
       description: 'Shared frontend behavior: command palette, identity, action routing. The contract your tools implement.',
-      repo: 'nelsong6/fzt-frontend',
+      repo: 'romaine-life/fzt-frontend',
       category: 'repo-boundary',
     },
   },
@@ -216,7 +216,7 @@ export const fztReposNodes: FztReposNode[] = [
     data: {
       label: 'my-homepage',
       description: 'Bookmark manager. WASM engine → browser renderer. Registers commands via addCommands().',
-      repo: 'nelsong6/my-homepage',
+      repo: 'romaine-life/my-homepage',
       category: 'repo-boundary',
     },
   },
@@ -227,7 +227,7 @@ export const fztReposNodes: FztReposNode[] = [
     data: {
       label: 'fzt-showcase',
       description: 'Interactive demo. WASM engine → browser renderer. No frontend layer (no commands).',
-      repo: 'nelsong6/fzt-showcase',
+      repo: 'romaine-life/fzt-showcase',
       category: 'repo-boundary',
     },
   },
@@ -238,7 +238,7 @@ export const fztReposNodes: FztReposNode[] = [
     data: {
       label: 'fzt-picker',
       description: 'File dialog replacement. DirProvider → fzt engine → terminal renderer. Rust COM hook.',
-      repo: 'nelsong6/fzt-picker',
+      repo: 'romaine-life/fzt-picker',
       category: 'repo-boundary',
     },
   },
