@@ -35,7 +35,7 @@ function VersionFooter() {
   return (
     <div className="border-t border-slate-700 px-3 py-2 text-[10px] text-slate-500 leading-tight">
       <a
-        href={`https://github.com/romaine-life/diagrams/commit/${info.sha}`}
+        href={`https://forgejo.romaine.life/romaine-life/diagrams/commit/${info.sha}`}
         target="_blank"
         rel="noreferrer"
         className="font-mono hover:text-slate-300 transition-colors"
@@ -57,12 +57,9 @@ const NAV_SECTIONS = [
     ],
   },
   {
-    label: 'CI',
+    label: 'Automation',
     routes: [
-      { path: '/ci', label: 'Dashboard' },
       { path: '/ci/codex', label: 'Codex Queue' },
-      { path: '/ci/fzt', label: 'fzt' },
-      { path: '/ci/tofu', label: 'tofu' },
     ],
   },
   {
@@ -83,12 +80,6 @@ const NAV_SECTIONS = [
       { path: '/spirelens', label: 'SpireLens' },
       { path: '/certs', label: 'Cert Concepts' },
       { path: '/emotions', label: 'Emotions' },
-    ],
-  },
-  {
-    label: 'Dev',
-    routes: [
-      { path: '/ci/fzt/test', label: 'fzt (test)' },
     ],
   },
 ]

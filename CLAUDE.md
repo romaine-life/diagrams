@@ -12,7 +12,7 @@ diagrams is an interactive architecture documentation site (at `diagrams.romaine
 
 Agent pods are not expected to have Docker. Do not report missing local Docker
 as a blocker. Run available repo checks first, then use PR CI as the normal
-container build gate: `.github/workflows/docker-build-check.yml` performs a
+container build gate: `.forgejo/workflows/docker-build-check.yaml` performs a
 throwaway Docker build with `push: false`. If image-packaging feedback is
 needed before a PR is ready, manually dispatch that workflow with `git_ref`.
 Release/deploy workflows are the only path that publishes images.
@@ -24,7 +24,7 @@ When local filesystem access is helpful for drafting, validation, or temporary a
 - Treat `D:\repos\...` checkouts as read-only reference context.
 - Do not edit tracked files in place under `D:\repos\...` unless the user explicitly approves that exact exception.
 - Prefer a disposable workspace outside the repo tree, such as `D:\automation\scratch\...`.
-- Publish the final repository change through GitHub-backed tools only.
+- Publish the final repository change through Forgejo-backed tools only.
 - Delete or discard the scratch workspace after the remote change is published.
 - Avoid local `git` commands entirely for repo work unless the user explicitly approves that exact exception.
 
@@ -46,10 +46,11 @@ frontend/src/
   index.css       Tailwind v4 + React Flow dark theme overrides
 k8s/              Helm chart for the AKS deployment
 tofu/             OpenTofu IaC — app Key Vault, CI identity, and supporting Azure resources
-.github/workflows/
-  build-and-deploy.yaml   Build + push the container image, then bump k8s/values.yaml
-  tofu.yml                Plan on PR, apply on merge to tofu/
-  lint.yml                ESLint on PR
+.forgejo/workflows/
+  build-and-deploy.yaml   Build and smoke-test image, publish, then merge a checked image-pin PR
+  docker-build-check.yaml Build and smoke-test the container on PRs
+  tofu.yaml              Plan on PR, apply infrastructure on main or manual dispatch
+  lint.yaml              Repository conventions, TypeScript build and ESLint
 ```
 
 ## Views
@@ -57,52 +58,13 @@ tofu/             OpenTofu IaC — app Key Vault, CI identity, and supporting Az
 - **`/`** — Main infrastructure diagram (React Flow) showing apps, shared infra, external services, CI/CD
 - **`/:app`** — Filtered view highlighting a single app's path through infrastructure
 - **`/pipelines`** — Pipeline dependency diagram showing cross-repo CI/CD chains (fzt → my-homepage / fzt-showcase) with the dispatch/artifact flow
-- **`/ci`** — Live CI dashboard (all repos). Push-based via GitHub App webhooks + SSE
-- **`/ci/fzt`** — fzt asset cascade post-split. Direct go.mod edges: `fzt` → `fzt-frontend`/`fzt-terminal`/`fzt-browser`/`fzt-automate`/`fzt-picker` (every consumer direct-imports `fzt`), `fzt-frontend` → `fzt-terminal`, `fzt-terminal` → `fzt-browser`/`fzt-automate`/`fzt-picker`. Release-artifact edges: `fzt-browser` → `my-homepage`/`fzt-showcase` (web bundle downloaded via `gh release download` in each consumer's deploy workflow, not a go.mod require). Horizontal layer-to-layer flow; packages stacked vertically inside each container. The `check-ci` skill encodes this graph for API-side verification. A small cascade grammar badge under the title mirrors that skill — green when every edge has matching producer/consumer versions, yellow if any cascade pipeline is in progress, red on unknown/mismatch with the failing edges listed in a hover tooltip.
-- **`/ci/tofu`** — Infrastructure repos: infra-bootstrap, diagrams, house-hunt, landing-page, emotions-mcp
+- **`/ci/codex`** — Codex Queue status and event stream. This separate automation feature retains its signing secret and backend routes.
 
-CI dashboard uses ELK (elkjs) for automatic node positioning and edge routing. Nodes are bottom-aligned per layer with dynamic heights. Webhook events from the `romaine-life-app` GitHub App flow through `diagrams.romaine.life/ci/webhook` → SSE → browser. Cold start backfills from the GitHub API.
-
-## Routes (`backend/routes/`)
-
-`createCIRoutes({ webhookSecret, githubAppId, githubAppPrivateKey })` returns an Express Router mounted at `/ci/*` in this app's own backend. Handles GitHub webhook events + SSE stream for the CI dashboard.
-
-All state is in-memory (lost on API restart). Four Maps: `runs` (pipeline runs keyed by `repo/runId`), `versions` (latest GitHub release per repo), `deployedVersions` (live deployed version per repo), `versionErrors` (backfill failures per repo). Runs older than 2 hours are pruned on each webhook event.
-
-### Auth
-
-GitHub API calls (backfill, npm registry) use GitHub App installation tokens generated from `github-app-id` and `github-app-private-key` Key Vault secrets (the `romaine-life-app` GitHub App — secrets are tagged with the app name for discoverability). Tokens are generated once per backfill cycle via native `crypto.createSign` (RS256 JWT → installation access token). No PAT.
-
-### Routes
-
-| Method | Path | Purpose |
-|--------|------|---------|
-| POST | `/webhook` | GitHub App webhook receiver. HMAC-verified (`x-hub-signature-256`). Handles `workflow_run` events (pipeline status) and `release` events (published versions). Broadcasts to SSE clients. Filters out Dependabot runs. |
-| GET | `/events` | SSE stream. Sends `init` (full snapshot including `versionErrors`), then `update` (run changes), `version` (releases), `deployed` (deploy reports). Triggers cold-start backfill on first connection. 30s keepalive. |
-| GET | `/status` | JSON snapshot of current runs + connected client count. |
-| GET | `/versions` | JSON snapshot of releases and deployed versions. |
-| POST | `/deployed` | Deploy report endpoint. Consumer sites POST `{ site, repo, versions }` after deploy to register their live versions. |
-
-### Cold-start backfill
-
-On first SSE connection, two backfill functions run in parallel:
-
-- `backfillFromGitHub()` — fetches the 5 most recent `main`-branch runs per repo from the GitHub API (14 repos).
-- `backfillVersions()` — fetches latest GitHub release per repo and `version.json` from each frontend site URL. Failures are recorded in `versionErrors` and surfaced on dashboard nodes.
-
-Both use shared Promises to prevent concurrent SSE connections from racing.
-
-### Monitored repos
-
-`fzt`, `fzt-frontend`, `fzt-terminal`, `fzt-browser`, `fzt-automate`, `fzt-picker`, `my-homepage`, `fzt-showcase`, `kill-me`, `plant-agent`, `investing`, `house-hunt`, `diagrams`, `infra-bootstrap`, `landing-page`, `emotions-mcp`, `llm-explorer`.
-
-When a new app joins the dashboard, update `REPOS` in `backend/routes/ci.js` (for run backfill) and `overviewRepos` + `overviewEdges` in `frontend/src/data/ci-views.ts` (for dashboard rendering).
-
-`SITE_URLS` in `ci.js` is separate — only include a repo there if it actually serves `/version.json`. Sites that don't (like `landing-page`) will produce persistent `version error` entries on the dashboard if included.
+The unused CI dependency dashboard, GitHub webhook ingestion, release backfill and deployed-version reporting were retired in FORGEJO-3. Former dashboard endpoints under `/ci` return 404.
 
 ## Navigation
 
-`NavSidebar` component — persistent collapsible right-side panel with route list grouped by section. Present on all pages. Footer fetches `/version.json` when a deployed app serves it and renders the 7-char SHA linked to the GitHub commit plus a relative timestamp ticking every 60s. The footer hides if `/version.json` 404s (dev mode); `frontend/public/version.json` is gitignored so dev fixtures don't get committed.
+`NavSidebar` component — persistent collapsible right-side panel with route list grouped by section. Present on all pages. Footer fetches `/version.json` when a deployed app serves it and renders the 7-char SHA linked to the Forgejo commit plus a relative timestamp ticking every 60s. The footer hides if `/version.json` 404s (dev mode); `frontend/public/version.json` is gitignored so dev fixtures don't get committed.
 
 ## Architecture Data
 
@@ -121,14 +83,3 @@ To add a new app or infra component: add a node in nodes.ts, wire edges in edges
 - `npm run dev` — Dev server on port 5505
 - `npm run build` — TypeScript check + Vite production build
 - `npm run lint` — ESLint
-
-## Change Log
-
-### 2026-04-15
-
-1. **Route package documentation** -- Expanded the CLAUDE.md "Route Package" section from a one-liner to a full reference: route table, in-memory state model (3 Maps), cold-start backfill mechanics, and monitored repo list. Motivated by the package growing beyond a quick summary.
-2. **Fixed cold-start backfill race condition** (`packages/routes/ci.js`) -- The `backfilled` boolean flag was set synchronously before async fetches completed. A second SSE client connecting mid-backfill skipped it entirely and got an empty `init` snapshot. Fix: replaced the boolean with a shared Promise (`backfillPromise`) so concurrent callers all await the same fetch.
-3. **Fixed backfill over-pruning** (`packages/routes/ci.js`) -- The 2-hour run cutoff ran immediately after backfill, deleting all fetched runs during quiet periods (no pushes in 2+ hours). Removed post-backfill pruning — webhook events still prune on arrival, which is the appropriate trigger.
-4. **Added missing-token warning** (`packages/routes/ci.js`) -- `console.warn` when `githubToken` is not configured, making the silent backfill skip visible in API logs.
-5. **API container view for `/ci/api`** -- Redesigned the API CI view from a flat node layout to a two-tier container layout. Host repos at the top, a large dashed-border API container below spanning all hosts, with route package boxes inside. Straight edges from each host to its package. Manual positioning (no ELK) since the layout is deterministic. New components: `CIApiContainerView`, `CIContainerNode`, `CIPackageNode`. Package deployed versions shown when available via the `/ci/deployed` endpoint.
-6. **Picker edge in fzt view** -- Added `['fzt-terminal', 'picker']` to `fztEdges` so picker is no longer an island on `/ci/fzt`. Depicts the consumer relationship (picker uses the fzt-automate binary from fzt-terminal releases).

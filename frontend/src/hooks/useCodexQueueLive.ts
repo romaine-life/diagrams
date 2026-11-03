@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { ConnectionStatus } from '../types/ci'
+import type { ConnectionStatus } from '../types/connection'
 import type { CodexQueueSnapshot } from '../types/codexQueue'
 import { getApiBase } from '../lib/apiBase'
 

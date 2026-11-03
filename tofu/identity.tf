@@ -1,10 +1,7 @@
 # Per-app workload identity for diagrams — replaces reuse of
 # infra-shared-identity. Diagrams' backend/config.js only reaches into
 # the app-owned Key Vault (no Cosmos, no App Configuration), so this identity
-# only needs app-vault read access for the secrets the pod reads at startup:
-#   - github-webhook-secret
-#   - github-app-id
-#   - github-app-private-key
+# only needs app-vault read access for the Codex Queue signing secret:
 #   - codex-queue-jwt-secret
 
 data "azurerm_resource_group" "infra" {

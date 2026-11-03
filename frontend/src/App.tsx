@@ -2,10 +2,6 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route, useParams, useNavigate } from 'react-router-dom'
 import DiagramView from './components/DiagramView'
 import PipelineView from './components/PipelineView'
-import CIDashboardView from './components/CIDashboardView'
-import CIFztView from './components/CIFztView'
-import CITofuView from './components/CITofuView'
-import CIFztTestView from './components/CIFztTestView'
 import CodexQueueView from './components/CodexQueueView'
 import NavSidebar from './components/NavSidebar'
 import EmotionsView from './components/EmotionsView'
@@ -46,11 +42,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<DiagramPage />} />
         <Route path="/pipelines" element={<PipelineView />} />
-        <Route path="/ci" element={<CIDashboardView />} />
         <Route path="/ci/codex" element={<CodexQueueView />} />
-        <Route path="/ci/fzt" element={<CIFztView />} />
-        <Route path="/ci/tofu" element={<CITofuView />} />
-        <Route path="/ci/fzt/test" element={<CIFztTestView />} />
         <Route path="/fzt" element={<FztArchView />} />
         <Route path="/fzt/proposed" element={<FztProposedView />} />
         <Route path="/fzt/repos" element={<FztReposView />} />

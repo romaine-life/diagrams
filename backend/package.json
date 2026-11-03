@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Per-app backend for diagrams.romaine.life — hosts /ci/* (webhook receiver, SSE stream, version tracking)",
+  "description": "Backend for diagrams.romaine.life architecture diagrams and Codex Queue",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

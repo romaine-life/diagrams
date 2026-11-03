@@ -7,9 +7,11 @@ COPY frontend/package*.json ./
 RUN npm ci
 
 COPY frontend/ ./
+ARG SOURCE_SHA=unknown
+RUN printf '{"sha":"%s","deployedAt":"%s"}\n' "$SOURCE_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > public/version.json
 RUN npm run build
 
-# ── Stage 2: runtime — Node + Express serves frontend/dist + /ci/* ────────
+# ── Stage 2: runtime — Node + Express serves frontend/dist + Codex Queue ────────
 FROM node:20-alpine
 
 WORKDIR /app

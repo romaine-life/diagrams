@@ -1,0 +1,65 @@
+name: Docker Build Check
+'on':
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      git_ref:
+        description: Git ref or commit SHA to build
+        required: false
+        type: string
+concurrency:
+  group: docker-build-check-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}-${{ inputs.git_ref || '' }}
+  cancel-in-progress: true
+jobs:
+  build:
+    name: Build app image
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: ${{ inputs.git_ref || github.event.pull_request.head.sha || github.sha }}
+    - name: Resolve source identity
+      id: source
+      run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+    - uses: https://github.com/docker/setup-buildx-action@v4
+      with:
+        driver-opts: network=host
+    - name: Build app image
+      uses: https://github.com/docker/build-push-action@v7
+      with:
+        context: .
+        file: Dockerfile
+        push: false
+        load: true
+        tags: diagrams:check
+        network: host
+        build-args: SOURCE_SHA=${{ steps.source.outputs.sha }}
+    - name: Smoke-test the built application
+      env:
+        SMOKE_IMAGE: diagrams:check
+      run: |
+        set -euo pipefail
+        name="diagrams-smoke-$GITHUB_RUN_ID"
+        trap 'docker rm -f "$name" >/dev/null 2>&1 || true' EXIT
+        docker run -d --network none --name "$name" "$SMOKE_IMAGE"
+        for n in $(seq 1 40); do
+          if docker exec "$name" node -e 'fetch("http://127.0.0.1:3000/health").then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))'; then break; fi
+          sleep 1
+        done
+        docker exec -e EXPECTED_SHA="$(git rev-parse HEAD)" "$name" node --input-type=module -e '
+        import assert from "node:assert/strict";
+        const base="http://127.0.0.1:3000";
+        assert.equal((await (await fetch(base+"/health")).json()).status,"healthy");
+        assert.equal((await (await fetch(base+"/version.json")).json()).sha,process.env.EXPECTED_SHA);
+        for (const path of ["/", "/pipelines", "/fzt", "/ci/codex"]) {
+          const r=await fetch(base+path); assert.equal(r.status,200,path); assert.ok((await r.text()).includes("<div id=\"root\"></div>"),path);
+        }
+        const html=await (await fetch(base+"/")).text();
+        const assets=[...html.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)].map(m=>m[1]);
+        assert.ok(assets.some(p=>p.endsWith(".js"))); assert.ok(assets.some(p=>p.endsWith(".css")));
+        for (const path of assets) {const r=await fetch(base+path); assert.equal(r.status,200,path); assert.ok((await r.text()).length>0,path);}
+        for (const path of ["/ci/versions", "/ci/status", "/ci/events", "/ci/fzt", "/ci/tofu"]) assert.equal((await fetch(base+path)).status,404,path);
+        for (const path of ["/ci/webhook", "/ci/deployed"]) assert.equal((await fetch(base+path,{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"})).status,404,path);
+        assert.equal((await fetch(base+"/ci/codex/status")).status,200);
+        console.log("Architecture frontend assets, Codex Queue, retired endpoints and exact source SHA verified");'

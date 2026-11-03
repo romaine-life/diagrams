@@ -13,7 +13,7 @@ import PipelineNodeComponent from './PipelineNode'
 import { codexQueueEdges } from '../data/codex-queue-edges'
 import { codexQueueNodes } from '../data/codex-queue-nodes'
 import { useCodexQueueLive } from '../hooks/useCodexQueueLive'
-import type { ConnectionStatus } from '../types/ci'
+import type { ConnectionStatus } from '../types/connection'
 import type { CodexQueueIssue, CodexQueueSnapshot } from '../types/codexQueue'
 import type { PipelineNodeData } from '../data/pipeline-nodes'
 
